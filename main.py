@@ -2,6 +2,7 @@ import numpy as np
 import pandas as pd
 import plotly.graph_objects as go
 import streamlit as st
+from sklearn.preprocessing import MinMaxScaler
 
 # Carregando os dados
 file = 'anxiety.csv'  
@@ -25,11 +26,11 @@ faixas_etarias = {
 
 faixas_selecionadas = [faixas_etarias[faixa] for faixa in faixas_etarias if st.sidebar.checkbox(faixa, value=True)]
 
-df_filtrado = df.copy()
+# Aplicando filtragem por idade
 if faixas_selecionadas:
-    df_filtrado = df_filtrado[df_filtrado["Age"].between(*faixas_selecionadas[0])]
-    for faixa in faixas_selecionadas[1:]:
-        df_filtrado = pd.concat([df_filtrado, df[df["Age"].between(*faixa)]])
+    df_filtrado = pd.concat([df[df["Age"].between(*faixa)] for faixa in faixas_selecionadas])
+else:
+    df_filtrado = df.copy()
 
 # Renomeando colunas para português
 rename_dict = {
@@ -74,14 +75,16 @@ fig_trabalho.update_layout(title="Profissões que Mais Causam Ansiedade", xaxis_
 # Correlação entre fatores e ansiedade
 fatores = ["Consumo de Cafeína (mg/dia)", "Horas de Sono", "Atividade Física (hrs/semana)", "Qualidade da Dieta (1-10)", "Consumo de Álcool (drinks/semana)", "Severidade do Ataque de Ansiedade (1-10)"]
 df_fatores = df_filtrado[fatores].dropna()
-fig_corr = go.Figure(data=go.Heatmap(z=df_fatores.corr().values, x=df_fatores.columns, y=df_fatores.columns, colorscale='RdBu'))
+
+# Aplicando MinMaxScaler para normalização correta
+scaler = MinMaxScaler()
+df_fatores_norm = pd.DataFrame(scaler.fit_transform(df_fatores), columns=df_fatores.columns)
+
+fig_corr = go.Figure(data=go.Heatmap(z=df_fatores_norm.corr().values, x=df_fatores_norm.columns, y=df_fatores_norm.columns, colorscale='RdBu'))
 fig_corr.update_layout(title="Correlação Entre Fatores e Ansiedade", title_x=0.3)
 
 # Radar Chart para impacto dos fatores
-
-# Normalizando corretamente os fatores com base nos valores reais do dataset
-df_norm = (df_fatores - df_fatores.min()) / (df_fatores.max() - df_fatores.min())
-fatores_media = df_norm.mean()
+fatores_media = df_fatores_norm.mean()
 
 # Convertendo para listas para evitar problemas na visualização
 labels = fatores_media.index.tolist()
