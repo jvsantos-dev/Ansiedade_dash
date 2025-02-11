@@ -2,6 +2,7 @@ import numpy as np
 import pandas as pd
 import plotly.graph_objects as go
 import streamlit as st
+import plotly.express as px
 from sklearn.preprocessing import MinMaxScaler
 
 # Carregando os dados
@@ -83,26 +84,22 @@ df_fatores_norm = pd.DataFrame(scaler.fit_transform(df_fatores), columns=df_fato
 fig_corr = go.Figure(data=go.Heatmap(z=df_fatores_norm.corr().values, x=df_fatores_norm.columns, y=df_fatores_norm.columns, colorscale='RdBu'))
 fig_corr.update_layout(title="Correlação Entre Fatores e Ansiedade", title_x=0.3)
 
-# Radar Chart para impacto dos fatores
 fatores_media = df_fatores_norm.mean()
 
 # Convertendo para listas para evitar problemas na visualização
 labels = fatores_media.index.tolist()
 valores = fatores_media.tolist()
 
-# Criando os ângulos para o radar chart
-angles = [n / float(len(labels)) * 2 * np.pi for n in range(len(labels))]
-angles += angles[:1]  # Fechando o gráfico
-
-# Ajustando os valores para o radar chart
-valores += valores[:1]  # Fechando o loop do radar chart
+labels.append(labels[0])
+valores.append(labels[0])
 
 # Criando o gráfico de radar
 fig_radar = go.Figure(data=[
     go.Scatterpolar(
         r=valores,
         theta=labels + [labels[0]],  # Fechando o gráfico
-        fill='toself'
+        fill='toself',
+        mode='lines'
     )
 ])
 fig_radar.update_layout(title="Impacto dos Fatores na Ansiedade", title_x=0.3)
