@@ -1,62 +1,80 @@
-Análise de Ansiedade e Seus Fatores
+Dashboard de Ansiedade
 
-Este projeto oferece uma análise dos impactos de diferentes fatores na ansiedade, permitindo explorar dados sobre o consumo de cafeína, horas de sono, atividade física, entre outros. O painel interativo foi desenvolvido usando Streamlit e inclui gráficos interativos para facilitar a visualização das relações entre variáveis, como a distribuição de gênero, profissões que mais causam ansiedade, correlação entre fatores e a severidade do ataque de ansiedade, além de um gráfico de radar para entender o impacto dos fatores na ansiedade.
-Tecnologias Utilizadas
+Este projeto é uma aplicação interativa desenvolvida com o Streamlit, permitindo visualizar e analisar fatores que impactam a ansiedade. Com base nos dados inseridos, o sistema retorna informações detalhadas e gráficos interativos para melhor compreensão dos padrões de ansiedade.
 
-    Python
-    Streamlit - Para criar a interface interativa.
-    Plotly - Para visualizações gráficas interativas.
-    Pandas - Para manipulação e análise de dados.
-    NumPy - Para operações numéricas.
-    Scikit-learn - Para normalização dos dados.
+🚀 Começando
 
-Funcionalidades
+Essas instruções permitirão que você obtenha uma cópia do projeto em operação na sua máquina local para fins de desenvolvimento e teste.
 
-    Faixas Etárias: O usuário pode selecionar faixas etárias específicas para filtrar os dados.
-    Distribuição de Gênero: Gráfico de pizza que exibe a distribuição de gênero na base de dados.
-    Profissões que Causam Ansiedade: Gráfico de barras que mostra as profissões que mais causam ansiedade.
-    Correlação Entre Fatores e Ansiedade: Um gráfico de calor (heatmap) que apresenta a correlação entre diferentes fatores (como consumo de cafeína, horas de sono, etc.) e a severidade do ataque de ansiedade.
-    Radar Chart: Exibe o impacto médio de cada fator na ansiedade por meio de um gráfico de radar.
+📋 Pré-requisitos
 
-Como Rodar
+Certifique-se de ter as seguintes ferramentas instaladas:
 
-    Instalar dependências: Para rodar este projeto, instale as dependências usando o pip:
+Python: versão 3.8 ou superior.
 
-pip install pandas numpy plotly scikit-learn streamlit
+🛠️ Bibliotecas Utilizadas
 
-Executar o aplicativo: No terminal, navegue até o diretório onde o script está localizado e execute:
+Este projeto utiliza as seguintes bibliotecas:
 
-    streamlit run app.py
+Streamlit: Para criar interfaces web interativas de forma simples.
 
-    Visualizar o aplicativo: O aplicativo será executado em um servidor local. Abra o navegador e acesse o endereço fornecido no terminal (geralmente http://localhost:8501).
+pandas: Para manipulação e análise de dados.
 
-Estrutura dos Dados
+numpy: Para cálculos estatísticos e manipulações numéricas.
 
-O dataset utilizado contém informações sobre os seguintes fatores:
+plotly: Para gerar gráficos interativos e visualizações dinâmicas.
 
-    Idade: Idade do participante.
-    Gênero: Gênero do participante (Masculino, Feminino, Outro).
-    Profissão: Profissão do participante.
-    Horas de Sono: Quantidade de horas de sono por noite.
-    Atividade Física (hrs/semana): Horas de atividade física por semana.
-    Consumo de Cafeína (mg/dia): Quantidade de cafeína consumida por dia em miligramas.
-    Consumo de Álcool (drinks/semana): Quantidade de bebidas alcoólicas consumidas por semana.
-    Fumante: Indicação se a pessoa fuma ou não.
-    Histórico Familiar de Ansiedade: Se há histórico familiar de ansiedade.
-    Nível de Estresse (1-10): Nível de estresse do participante em uma escala de 1 a 10.
-    Frequência Cardíaca (bpm durante ataque): Frequência cardíaca durante um ataque de ansiedade.
-    Frequência Respiratória (respirações/min): Frequência respiratória durante um ataque de ansiedade.
-    Nível de Suor (1-5): Nível de suor durante um ataque de ansiedade.
-    Tontura: Indicação se o participante experimenta tontura.
-    Medicação: Indicação se o participante faz uso de medicação.
-    Sessões de Terapia (por mês): Número de sessões de terapia realizadas por mês.
-    Evento de Vida Recente: Se o participante teve um evento de vida recente significativo.
-    Qualidade da Dieta (1-10): Qualidade percebida da dieta em uma escala de 1 a 10.
-    Severidade do Ataque de Ansiedade (1-10): Severidade de um ataque de ansiedade em uma escala de 1 a 10.
+requests: Para consumo de APIs externas, se necessário.
 
-Contribuições
+🔧 Instalação
 
-Se você quiser contribuir com este projeto, fique à vontade para abrir uma issue ou enviar um pull request.
-Licença
+Siga estas etapas para configurar o ambiente:
 
-Este projeto está licenciado sob a Licença MIT - consulte o arquivo LICENSE para mais detalhes.
+Clone o repositório:
+
+git clone https://github.com/seu_usuario/Ansiedade_dash.git
+
+Acesse o diretório do projeto:
+
+cd monitoramento-ansiedade
+
+Crie um ambiente virtual (opcional, mas recomendado):
+
+python -m venv venv
+source venv/bin/activate  # No Windows use: venv\Scripts\activate
+
+Instale as dependências:
+
+pip install -r requirements.txt
+
+Execute a aplicação:
+
+streamlit run main.py
+
+Abra o navegador e acesse http://127.0.0.1:8501 para visualizar a aplicação.
+
+📈 Funcionalidades
+
+Monitoramento Interativo: Insira os dados e obtenha insights sobre padrões de ansiedade.
+
+Gráficos Dinâmicos: Visualize fatores que influenciam a ansiedade através de gráficos de radar e dispersão.
+
+Análise de Tendências: Compare valores e veja a evolução dos indicadores ao longo do tempo.
+
+🎨 Personalizações
+
+Interface Customizada: A aplicação conta com um design limpo e intuitivo para melhor experiência do usuário.
+
+Visualizações Gráficas: Gráficos interativos tornam a análise mais acessível e fácil de entender.
+
+📸 Exemplos Visuais
+
+Abaixo estão exemplos dos gráficos gerados pela aplicação:
+
+Gráfico de Radar: Exibe a influência de diferentes fatores sobre a ansiedade.
+
+Gráficos de Linha e Dispersão: Mostram a evolução dos níveis de ansiedade ao longo do tempo.
+
+📄 Licença
+
+Este projeto está licenciado sob a Licença MIT - veja o arquivo LICENSE para mais detalhes.
