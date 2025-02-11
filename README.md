@@ -31,7 +31,7 @@ Siga estas etapas para configurar o ambiente:
 
 1. Clone o repositório:
 
-  git clone https://github.com/seu_usuario/Ansiedade_dash.git
+  git clone https://github.com/jvsantos-dev/Ansiedade_dash.git
 
 2. Acesse o diretório do projeto:
 
